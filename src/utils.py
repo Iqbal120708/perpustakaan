@@ -25,7 +25,7 @@ def task_decorator(spinner_config):
     def decorator(func):
         def wrapper(*args, **kwargs):
             console.clear()
-            func()
+            func(*args, **kwargs)
             spinner = Spinner(
                 "dots",
                 text=f"[{spinner_config["color_text"]}]{spinner_config["text"]}[/{spinner_config["color_text"]}]",
@@ -37,3 +37,11 @@ def task_decorator(spinner_config):
         return wrapper
 
     return decorator
+    
+def cari_by_id(data, target_id):
+    for item in data:
+        if item.get("id") == target_id:
+            return item
+    return None
+
+
