@@ -4,15 +4,15 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.table import Table
-
-import db
+from db_instance  import db
+#from db import Database
 
 console = Console()
 
 
 def home():
     console.clear()
-
+    
     print(end="\n\n")
     menu_text = """
         **1. Tambah Data** (*add*)  
@@ -36,7 +36,7 @@ def home():
     )
 
     print(end="\n")
-
+    
     table = Table(title="Daftar Pengguna")
 
     table.add_column("ID", style="cyan", no_wrap=True)
@@ -44,9 +44,9 @@ def home():
     table.add_column("Author", style="green")
     table.add_column("Year", style="blue")
 
-    for data in db.table_data:
+    for item in db.data:
         table.add_row(
-            str(data["id"]), data["title"], data["author"], str(data["years"])
+            str(item["id"]), item["title"], item["author"], str(item["years"])
         )
 
     console.print(table)
